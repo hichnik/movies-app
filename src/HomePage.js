@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Spinner } from '@veriff/genoma';
+import MovieCard from './MovieCard';
 import styles from './HomePage.module.css';
 
 function HomePage() {
@@ -25,7 +26,12 @@ function HomePage() {
 
   return (
     <div className={styles.root}>
-      {data.results.map(movie => movie.title)}
+      <h2>Trending</h2>
+      <div className={styles.movies}>
+        {data.results.map(movie => (
+            <MovieCard key={movie.id} title={movie.title} posterPath={movie.poster_path} />
+        ))}
+      </div>
     </div>
   );
 }

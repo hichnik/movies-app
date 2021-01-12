@@ -1,0 +1,13 @@
+.root {
+
+}
+
+.image {
+    width: 200px;
+    border-radius: 4px;
+}
+
+.title {
+    font-size: var(--genoma-font-size-body);
+    margin: 0
+}
