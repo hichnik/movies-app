@@ -1,24 +1,16 @@
-import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import useApiRequest from "./useApiRequest";
 import styles from "./MoviePage.module.css";
 
 function MoviePage() {
   const { id } = useParams();
-  const [data, setData] = useState(null);
+  const { data, loading, error } = useApiRequest(`/movie/${id}`);
 
-  useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}?api_key=8c9f0b25d628dc3a96bcc112d2c82e63`
-      );
-      const json = await response.json();
-      setData(json);
-    }
+  if (error) {
+    return <div>{error}</div>;
+  }
 
-    fetchData();
-  }, [id]);
-
-  if (!data) {
+  if (loading || !data) {
     return <div>Loading..</div>;
   }
 

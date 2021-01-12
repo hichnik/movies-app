@@ -1,24 +1,16 @@
-import { useEffect, useState } from "react";
 import { Spinner } from "@veriff/genoma";
+import useApiRequest from "./useApiRequest";
 import MovieCard from "./MovieCard";
 import styles from "./HomePage.module.css";
 
 function HomePage() {
-  const [data, setData] = useState(null);
+  const { data, loading, error } = useApiRequest("/trending/movie/week");
 
-  useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(
-        "https://api.themoviedb.org/3/trending/movie/week?api_key=8c9f0b25d628dc3a96bcc112d2c82e63"
-      );
-      const json = await response.json();
-      setData(json);
-    }
+  if (error) {
+    return <div className={styles.root}>{error}</div>;
+  }
 
-    fetchData();
-  }, []);
-
-  if (!data) {
+  if (loading || !data) {
     return (
       <div className={styles.root}>
         <Spinner size="large" />
