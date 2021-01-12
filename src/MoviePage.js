@@ -1,22 +1,38 @@
 import { useParams } from "react-router-dom";
 import useApiRequest from "./useApiRequest";
+import MovieCard from "./MovieCard";
 import styles from "./MoviePage.module.css";
 
 function MoviePage() {
   const { id } = useParams();
-  const { data, loading, error } = useApiRequest(`/movie/${id}`);
+  const movie = useApiRequest(`/movie/${id}`);
+  const similarMovies = useApiRequest(`/movie/${id}/similar`);
 
-  if (error) {
-    return <div>{error}</div>;
+  if (movie.error) {
+    return <div>{movie.error}</div>;
   }
 
-  if (loading || !data) {
+  if (movie.loading || !movie.data) {
     return <div>Loading..</div>;
   }
 
   return (
     <div className={styles.root}>
-      <h2>{data.title}</h2>
+      <img
+        src={`https://image.tmdb.org/t/p/w500${movie.data.poster_path}`}
+        alt={movie.data.title}
+      />
+      <h2>{movie.data.title}</h2>
+
+      {similarMovies.data &&
+        similarMovies.data.results.map((movie) => (
+          <MovieCard
+            key={movie.id}
+            id={movie.id}
+            title={movie.title}
+            posterPath={movie.poster_path}
+          />
+        ))}
     </div>
   );
 }
