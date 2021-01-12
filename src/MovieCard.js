@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import styles from "./MovieCard.module.css";
 
-function MovieCard({ title, posterPath }) {
+function MovieCard({ id, title, posterPath }) {
   return (
     <div className={styles.root}>
       <img
@@ -8,7 +9,9 @@ function MovieCard({ title, posterPath }) {
         src={`https://image.tmdb.org/t/p/w500${posterPath}`}
         alt={title}
       />
-      <h3 className={styles.title}>{title}</h3>
+      <h3 className={styles.title}>
+        <Link to={`/movies/${id}`}>{title}</Link>
+      </h3>
     </div>
   );
 }
