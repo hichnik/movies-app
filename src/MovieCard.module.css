@@ -1,10 +1,10 @@
 .image {
-    width: 200px;
-    border-radius: 4px;
-    margin: 0 0 16px 0;
+  width: 200px;
+  border-radius: 4px;
+  margin: 0 0 16px 0;
 }
 
 .title {
-    font-size: var(--genoma-font-size-body);
-    margin: 0;
+  font-size: var(--genoma-font-size-body);
+  margin: 0;
 }

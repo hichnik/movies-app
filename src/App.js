@@ -1,6 +1,6 @@
-import '@veriff/genoma/lib/base.css';
-import { AppHeader } from '@veriff/genoma';
-import HomePage from './HomePage';
+import "@veriff/genoma/lib/base.css";
+import { AppHeader } from "@veriff/genoma";
+import HomePage from "./HomePage";
 
 function App() {
   return (
@@ -10,7 +10,6 @@ function App() {
       </AppHeader>
       <HomePage />
     </div>
-    
   );
 }
 
