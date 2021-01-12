@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Spinner } from '@veriff/genoma';
 
 function HomePage() {
   const [data, setData] = useState(null);
@@ -14,7 +15,7 @@ function HomePage() {
   }, []);
 
   if (!data) {
-      return <div>Loading...</div>;
+      return <Spinner size="large" />;
   }
 
   return (

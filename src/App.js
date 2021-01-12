@@ -1,8 +1,16 @@
+import '@veriff/genoma/lib/base.css';
+import { AppHeader } from '@veriff/genoma';
 import HomePage from './HomePage';
 
 function App() {
   return (
-    <HomePage />
+    <div>
+      <AppHeader>
+        <AppHeader.Title>Movie app</AppHeader.Title>
+      </AppHeader>
+      <HomePage />
+    </div>
+    
   );
 }
 
