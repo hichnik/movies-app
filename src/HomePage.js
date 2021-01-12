@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Spinner } from '@veriff/genoma';
+import styles from './HomePage.module.css';
 
 function HomePage() {
   const [data, setData] = useState(null);
@@ -15,11 +16,15 @@ function HomePage() {
   }, []);
 
   if (!data) {
-      return <Spinner size="large" />;
+      return (
+        <div className={styles.root}>
+          <Spinner size="large" />
+        </div>
+      );
   }
 
   return (
-    <div>
+    <div className={styles.root}>
       {data.results.map(movie => movie.title)}
     </div>
   );
